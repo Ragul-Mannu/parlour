@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --rose-gold: #b76e79;
+  --rose-gold-light: #d4a0a7;
+  --blush: #f9e4e7;
+  --cream: #fdf9f3;
+  --gold: #d4af6d;
+  --dark: #1a0a0d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: #fefdfb;
+  color: #1a0a0d;
+  overflow-x: hidden;
+}
+
+.dark body {
+  background-color: #1a0a0d;
+  color: #fdf9f3;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #fdf9f3; }
+::-webkit-scrollbar-thumb { background: #b76e79; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #8b4e57; }
+
+/* ===== UTILITY CLASSES ===== */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-rose-gold text-white font-medium rounded-full 
+           hover:bg-rose-gold-dark transition-all duration-300 shadow-rose hover:shadow-rose-lg 
+           hover:-translate-y-0.5 active:translate-y-0 text-sm md:text-base;
+  }
+  
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-3 border-2 border-rose-gold text-rose-gold font-medium 
+           rounded-full hover:bg-rose-gold hover:text-white transition-all duration-300 text-sm md:text-base;
+  }
+  
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-6 py-3 text-rose-gold font-medium rounded-full 
+           hover:bg-blush-50 transition-all duration-300 text-sm md:text-base;
+  }
+
+  .section-title {
+    @apply font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-cream-100;
+  }
+  
+  .section-subtitle {
+    @apply text-rose-gold font-accent text-lg md:text-xl font-medium tracking-widest uppercase;
+  }
+  
+  .card-glass {
+    @apply bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg rounded-2xl shadow-card border border-white/50 
+           dark:border-gray-700/50;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-rose-gold to-blush-400 bg-clip-text text-transparent;
+  }
+
+  .nav-link {
+    @apply text-gray-700 dark:text-cream-200 hover:text-rose-gold dark:hover:text-rose-gold-light 
+           font-medium transition-colors duration-200 relative text-sm;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 
+           text-gray-900 dark:text-cream-100 focus:outline-none focus:ring-2 focus:ring-rose-gold/30 
+           focus:border-rose-gold transition-all duration-200 text-sm;
+  }
+  
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* ===== HERO PARALLAX ===== */
+.hero-bg {
+  background: linear-gradient(135deg, rgba(183,110,121,0.92) 0%, rgba(139,78,87,0.8) 40%, rgba(26,10,13,0.85) 100%);
+}
+
+/* ===== SHIMMER SKELETON ===== */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* ===== GLASS CARD ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.glass-dark {
+  background: rgba(26, 10, 13, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(183, 110, 121, 0.2);
+}
+
+/* ===== SMOOTH PAGE TRANSITION ===== */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.4s ease-out;
+}
+
+/* ===== MASONRY GRID ===== */
+.masonry-grid {
+  columns: 2;
+  column-gap: 1rem;
+}
+@media (min-width: 768px) {
+  .masonry-grid { columns: 3; }
+}
+@media (min-width: 1024px) {
+  .masonry-grid { columns: 4; }
+}
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+/* ===== CUSTOM BADGE ===== */
+.badge-new {
+  @apply absolute -top-2 -right-2 bg-rose-gold text-white text-xs font-bold px-2 py-0.5 rounded-full;
+}
+
+/* ===== WHATSAPP FLOAT ===== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+}
+
+/* ===== SCROLL TO TOP ===== */
+.scroll-top {
+  position: fixed;
+  bottom: 88px;
+  right: 24px;
+  z-index: 9998;
+}
+
+/* ===== STAR RATING ===== */
+.star-filled { color: #d4af6d; }
+.star-empty { color: #e0e0e0; }
+
+/* ===== RESPONSIVE FIXES ===== */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 640px) {
+  .masonry-grid {
+    columns: 2;
+    column-gap: 0.5rem;
+  }
+  .masonry-item {
+    margin-bottom: 0.5rem;
+  }
+}
